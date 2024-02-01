@@ -1,0 +1,9 @@
+.container {
+    margin: 3%;
+  }
+.innerContainer{
+  display: flex;
+  flex-direction: column;
+  background-color:rgb(189, 230, 243);
+  min-height: 70;
+}
