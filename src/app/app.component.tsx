@@ -9,6 +9,9 @@ import Service from "../services/services";
   template: '<ng-dhis2-shell (shellHasLoaded)="onReady()"></ng-dhis2-shell>',
 })
 export class AppComponent extends NgDhis2ShellWrapper {
+  title(title: any) {
+    throw new Error('Method not implemented.');
+  }
   override componentPortal: ComponentPortal<any> = new ComponentPortal(
     AppComponentContent
   );
@@ -25,11 +28,14 @@ export class AppComponentContent {
   
   RequestTable = () => {
     const [expandedRows, setExpandedRows] = useState<any>([]);
+     const [requests,setRequests] = useState<any>([]);
 
     useEffect(() => {
-      const requestdata =  Service()
-      console.log("data from api are --------------->",)
-      const initialExpandedRows = Array(serviceItem.length).fill(false);
+      const requestdata =new Service();
+      const data =requestdata.Services();
+      
+      setRequests(data.entries);
+      const initialExpandedRows = Array(data.entries.length).fill(false);
       setExpandedRows(initialExpandedRows);
     }, [this.serviceItem]);
   
@@ -41,7 +47,7 @@ export class AppComponentContent {
       });
       console.log('Updated value:', expandedRows[index]);
     };
-  
+    console.log("data from api are sample--------------->",requests)
     const serviceItem = [
       { firstName: 'Request to Unlock form of February 13', lastName: 'Kariuki', incidentDate: '02/06/2007', lastUpdated: '05/25/1972' },
       { firstName: 'Lock District Form ', lastName: 'Okafor', incidentDate: '08/11/2010', lastUpdated: '02/26/1991' },
@@ -57,17 +63,18 @@ export class AppComponentContent {
             <DataTableColumnHeader>Requests</DataTableColumnHeader>
             <DataTableColumnHeader>From</DataTableColumnHeader>
             <DataTableColumnHeader>Issued date</DataTableColumnHeader>
-            <DataTableColumnHeader>Action date</DataTableColumnHeader>
+            <DataTableColumnHeader>Action</DataTableColumnHeader>
           </DataTableRow>
         </TableHead>
         <TableBody>
-          {serviceItem.map((service, index) => (
-            <DataTableRow
+          {requests.lenght!== 0 && requests.map((item: any,index: any)=>{
+          return  <DataTableRow
               key={index}
               expandableContent={
                 <div className = "innerContainer">
-                <p>{service.firstName} - {service.lastName}</p>
-
+                <p>{item.key}</p>
+                <p style={{ display: 'flex',maxWidth:"1080px",paddingBottom:20}}>{item.value.message.message}</p>
+                {/* <div  dangerouslySetInnerHTML={{ __html: item.value.message.message }} /> */}
                 <div style={{ display: 'flex', gap:20,}}>
                   <Button primary>Grant Access</Button>
                   <Button destructive >Reject Request</Button>
@@ -77,12 +84,12 @@ export class AppComponentContent {
               onExpandToggle={() => onExpandToggle(index)}
               expanded={expandedRows[index]}
             >
-              <DataTableCell>{service.firstName}</DataTableCell>
-              <DataTableCell>{service.lastName}</DataTableCell>
-              <DataTableCell>{service.incidentDate}</DataTableCell>
-              <DataTableCell>{service.lastUpdated}</DataTableCell>
+              <DataTableCell>{item.value.action}</DataTableCell>
+              <DataTableCell>{item.value.date}</DataTableCell>
+              <DataTableCell>{item.value.date}</DataTableCell>
+              <DataTableCell>{item.type}</DataTableCell>
             </DataTableRow>
-          ))}
+          })}
         </TableBody>
       </DataTable>
     );
