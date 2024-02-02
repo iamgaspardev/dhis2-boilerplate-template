@@ -3,7 +3,7 @@ import {  ChangeDetectionStrategy, ChangeDetectorRef,Component, NgZone} from '@a
 import { NgDhis2ShellWrapper } from '@iapps/ng-dhis2-shell';
 import { Button, DataTable, TableHead, DataTableRow, DataTableColumnHeader, TableBody, DataTableCell } from '@dhis2/ui';
 import React ,{useState,useEffect} from 'react';
-
+import Service from "../services/services";
 @Component({
   selector: 'app-root',
   template: '<ng-dhis2-shell (shellHasLoaded)="onReady()"></ng-dhis2-shell>',
@@ -27,6 +27,8 @@ export class AppComponentContent {
     const [expandedRows, setExpandedRows] = useState<any>([]);
 
     useEffect(() => {
+      const requestdata =  Service()
+      console.log("data from api are --------------->",)
       const initialExpandedRows = Array(serviceItem.length).fill(false);
       setExpandedRows(initialExpandedRows);
     }, [this.serviceItem]);
