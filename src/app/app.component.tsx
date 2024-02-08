@@ -4,6 +4,7 @@ import { NgDhis2ShellWrapper } from '@iapps/ng-dhis2-shell';
 import { Button, DataTable, TableHead, DataTableRow, DataTableColumnHeader, TableBody, DataTableCell } from '@dhis2/ui';
 import React ,{useState,useEffect} from 'react';
 import Service from "../services/services";
+import Services from 'src/services/servicesapi';
 @Component({
   selector: 'app-root',
   template: '<ng-dhis2-shell (shellHasLoaded)="onReady()"></ng-dhis2-shell>',
@@ -32,12 +33,15 @@ export class AppComponentContent {
 
     useEffect(() => {
       const requestdata =new Service();
+      const apidata = new Services()
       const data =requestdata.Services();
+      const api = apidata.getDataRequest();
+      console.log("data from Api are ---------------------->",api)
       
       setRequests(data.entries);
       const initialExpandedRows = Array(data.entries.length).fill(false);
       setExpandedRows(initialExpandedRows);
-    }, [this.serviceItem]);
+    }, []);
   
     const onExpandToggle = (index: number) => {
       setExpandedRows((prevExpandedRows: any) => {
@@ -72,9 +76,8 @@ export class AppComponentContent {
               key={index}
               expandableContent={
                 <div className = "innerContainer">
-                <p>{item.key}</p>
+                <p  style={{ color: "#3C70BA ",fontWeight:"bolder"}}>{item.key}</p>
                 <p style={{ display: 'flex',maxWidth:"1080px",paddingBottom:20}}>{item.value.message.message}</p>
-                {/* <div  dangerouslySetInnerHTML={{ __html: item.value.message.message }} /> */}
                 <div style={{ display: 'flex', gap:20,}}>
                   <Button primary>Grant Access</Button>
                   <Button destructive >Reject Request</Button>
@@ -95,10 +98,4 @@ export class AppComponentContent {
     );
 };
   Button = () => (<Button primary> Grant Access</Button>);
-  serviceItem = [
-    { firstName: 'Request to Unlock form of February 13', lastName: 'Kariuki', incidentDate: '02/06/2007', lastUpdated: '05/25/1972' },
-    { firstName: 'Lock District Form ', lastName: 'Okafor', incidentDate: '08/11/2010', lastUpdated: '02/26/1991' },
-    { firstName: 'Request for unlocking the form facilities', lastName: 'Abiodun', incidentDate: '07/21/1981', lastUpdated: '02/06/2007' },
-    { firstName: 'Lock District Form from Manyara Districts', lastName: 'Okafor', incidentDate: '08/11/2010', lastUpdated: '02/26/1991' },
-  ];
 }
