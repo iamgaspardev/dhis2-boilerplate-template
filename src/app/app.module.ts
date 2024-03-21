@@ -17,7 +17,7 @@ import {ReactWrapperModule} from '@iapps/ng-dhis2-ui'
       isDevMode: !environment.production,
     }),
   ],
-  declarations: [AppComponent, AppComponentContent],
+  declarations: [AppComponent, AppComponentContent,],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
