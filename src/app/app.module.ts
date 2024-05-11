@@ -6,18 +6,21 @@ import { AppComponent, AppComponentContent } from './app.component';
 import { AppShellModule } from '@iapps/ng-dhis2-shell';
 import { environment } from '../environments/environment';
 import {ReactWrapperModule} from '@iapps/ng-dhis2-ui'
+import { AppRoutingModule } from './app-routing.module';
+import { AppSidebarComponent } from './app-sidebar/app-sidebar.component';
 
 @NgModule({
   imports: [
     BrowserModule,
     ReactWrapperModule,
+    AppRoutingModule,
     RouterModule.forRoot(routes, { useHash: true }),
     AppShellModule.forRoot({
       pwaEnabled: false,
       isDevMode: !environment.production,
     }),
   ],
-  declarations: [AppComponent, AppComponentContent,],
+  declarations: [AppComponent, AppComponentContent,AppSidebarComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

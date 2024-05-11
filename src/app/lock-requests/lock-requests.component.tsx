@@ -1,17 +1,19 @@
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, NgZone } from '@angular/core';
 import { NgDhis2ShellWrapper } from '@iapps/ng-dhis2-shell';
 import { Button, DataTable, TableHead, DataTableRow, DataTableColumnHeader, TableBody, DataTableCell, Model } from '@dhis2/ui';
 import React, { useState, useEffect } from 'react';
-import Service from "../services/services";
+import Models from '../components/models';
 import Services from 'src/services/servicesapi';
-import Models from './components/models';
 
 @Component({
-  selector: 'app-root',
-  template: '<ng-dhis2-shell (shellHasLoaded)="onReady()"></ng-dhis2-shell>',
+  selector: 'app-lock-requests',
+  standalone: true,
+  imports: [],
+templateUrl: './lock-requests.component.html',
+  styleUrl: './lock-requests.component.scss'
 })
-export class AppComponent extends NgDhis2ShellWrapper {
+export class LockRequestsComponent extends NgDhis2ShellWrapper {
   title(title: any) {
     throw new Error('Method not implemented.');
   }
@@ -19,7 +21,6 @@ export class AppComponent extends NgDhis2ShellWrapper {
     AppComponentContent
   );
 }
-
 @Component({
   selector: 'app-root-content',
   templateUrl: './app.component.html',
@@ -36,15 +37,14 @@ export class AppComponentContent {
 
     useEffect(() => {
       const fetchData = async () => {
-        const requestdata = new Service();
+        const requestdata = new Services();
         const apidata = new Services()
-        const data = requestdata.Services();
         // const apidt = apidata.getDataRequest();
         const apiDataPromise = apidata.getDataRequest();
         const [apidt] = await Promise.all([apiDataPromise]);
         console.log("data from online Api are ---------------------->", apidt.entries);
         setRequests(apidt.entries);
-        const initialExpandedRows = Array(data.entries.length).fill(false);
+        const initialExpandedRows = Array(apidt.entries.length).fill(false);
         setExpandedRows(initialExpandedRows);
       };
       fetchData();

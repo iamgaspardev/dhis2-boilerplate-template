@@ -32,12 +32,13 @@ class Services {
     }
   };
   
-  exceptionalHandling = async (ou:any, ds:any, pe:any) => {
-    const endpoint = `${this.baseUrl}/40/lockExceptions`;
+  exceptionalHandling = async (ou:any, ds:any, pe:any,methods:any) => {
+    const url = `${this.baseUrl}/40/lockExceptions`;
+    const method = methods;
 
     try {
-      const response = await fetch(endpoint, {
-        method: "DELETE",
+      const response = await fetch(url, {
+        method: method,
         headers: {
           Authorization: `Basic ${btoa(`${this.username}:${this.password}`)}`,
           "Content-Type": "application/json",
