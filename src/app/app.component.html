@@ -1,11 +1,8 @@
 <div class="container">
   <div class="sidebar">
-    <app-app-sidebar>side</app-app-sidebar>
+    <app-app-sidebar></app-app-sidebar>
   </div>
-  <!-- <div class="main-content">
-    <div class="title">Form Requests</div>
-    <div class="content">
-      <ng-dhis2-ui-wrapper [component]="RequestTable"></ng-dhis2-ui-wrapper>
-    </div>
-  </div> -->
+  <div class="main-content">
+    <router-outlet></router-outlet>
+  </div>
 </div>

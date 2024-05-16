@@ -8,27 +8,13 @@ import Services from 'src/services/servicesapi';
 
 @Component({
   selector: 'app-lock-requests',
-  standalone: true,
-  imports: [],
-templateUrl: './lock-requests.component.html',
-  styleUrl: './lock-requests.component.scss'
-})
-export class LockRequestsComponent extends NgDhis2ShellWrapper {
-  title(title: any) {
-    throw new Error('Method not implemented.');
-  }
-  override componentPortal: ComponentPortal<any> = new ComponentPortal(
-    AppComponentContent
-  );
-}
-@Component({
-  selector: 'app-root-content',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  templateUrl: './lock-requests.component.html',
+  styleUrls: ['lock-requests.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class AppComponentContent {
+export class LockRequestsComponentContent  extends NgDhis2ShellWrapper  {
+  componentPortal: ComponentPortal<any> = new ComponentPortal(LockRequestsComponentContent);
 
   RequestTable = () => {
     const [expandedRows, setExpandedRows] = useState<any>([]);
@@ -115,4 +101,5 @@ export class AppComponentContent {
 
     );
   };
+  
 }

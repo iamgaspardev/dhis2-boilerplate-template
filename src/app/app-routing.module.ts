@@ -2,13 +2,13 @@
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AppComponentContent } from './app.component';
 import { CreateRequestComponent } from './create-request/create-request.component';
+import { LockRequestsComponentContent } from './lock-requests/lock-requests.component';
 
 const routes: Routes = [
-  { path: 'user-create', component: AppComponentContent },
-  { path: 'manage-exception', component: CreateRequestComponent },
-  { path: '', redirectTo: '/user-create', pathMatch: 'full' } 
+  { path: 'manage-exception', component: LockRequestsComponentContent },
+  { path: 'user-create', component: CreateRequestComponent },
+  { path: '', redirectTo: '/manage-exception', pathMatch: 'full' } 
 ];
 
 @NgModule({

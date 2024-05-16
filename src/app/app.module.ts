@@ -8,6 +8,7 @@ import { environment } from '../environments/environment';
 import {ReactWrapperModule} from '@iapps/ng-dhis2-ui'
 import { AppRoutingModule } from './app-routing.module';
 import { AppSidebarComponent } from './app-sidebar/app-sidebar.component';
+import { LockRequestsComponentContent } from './lock-requests/lock-requests.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,7 @@ import { AppSidebarComponent } from './app-sidebar/app-sidebar.component';
       isDevMode: !environment.production,
     }),
   ],
-  declarations: [AppComponent, AppComponentContent,AppSidebarComponent],
+  declarations: [AppComponent, AppComponentContent,AppSidebarComponent,LockRequestsComponentContent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

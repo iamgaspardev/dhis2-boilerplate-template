@@ -13,12 +13,15 @@
   max-width: 60%;
 }
 .title {
+  margin-top: 10%;
   font-size: 24px;
   font-weight: bold;
   margin-right: 20px; 
   padding-bottom: 20px;
 }
-
+.sidebar{
+  width: 20%;
+}
 .content {
   flex-grow: 1;
 }
