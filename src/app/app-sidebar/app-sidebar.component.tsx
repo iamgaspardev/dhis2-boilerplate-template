@@ -13,11 +13,11 @@ export class AppSidebarComponent extends NgDhis2ShellWrapper{
   componentPortal: ComponentPortal<any> = new ComponentPortal(AppSidebarComponent);
  SideBar=()=>{
   return ( <div>
-    <FlyoutMenu elevation={0}>
-    <MenuItem icon={<IconHome24 />} onclick={'/user-create'} active label="Manage Exception" />
-    <MenuItem icon={<IconEdit24 />} label="Create Exceptional" />
+    <FlyoutMenu maxHeight='100%' >
+    <MenuItem icon={<IconHome24 />} href='/manage-exception' active label="Manage Exception" />
+    <MenuItem icon={<IconEdit24 />}  href='/user-create' label="Create Exceptional" />
     <MenuDivider />
-    <MenuItem icon={<IconList24 />}  label="Approved list" />
+    <MenuItem icon={<IconList24 />} href='#' label="Approved list" />
     </FlyoutMenu>
   </div>);
     
