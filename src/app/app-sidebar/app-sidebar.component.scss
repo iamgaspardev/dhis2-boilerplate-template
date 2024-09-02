@@ -8,13 +8,12 @@ body {
 .sidebar {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   flex-wrap: wrap;
   position: fixed;
   height: 100%;
-  width: 15vw;
+  // width: 10vw;
   font-family: raleway;
-  background: #2C6693;
+  // background: #2C6693;
 }
 
 .item {
@@ -29,4 +28,5 @@ body {
     display: flex;
     flex-direction: column;
   padding: 20px;
+  font-size: 10px;
 }

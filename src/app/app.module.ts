@@ -21,7 +21,7 @@ import { LockRequestsComponentContent } from './lock-requests/lock-requests.comp
       isDevMode: !environment.production,
     }),
   ],
-  declarations: [AppComponent, AppComponentContent,AppSidebarComponent,LockRequestsComponentContent],
+  declarations: [AppComponent, AppComponentContent,AppSidebarComponent,LockRequestsComponentContent,AppSidebarComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
